@@ -1,0 +1,22 @@
+version: '3.7'
+services:
+
+  react-ts:
+    env_file:
+      - .env
+    container_name: react-ts
+    restart: always
+    build:
+      context: ../../my-react-ts
+      dockerfile: ../docker/dev/Dockerfile
+    environment:
+      - REACT_APP_TEST=${REACT_APP_TEST}
+    volumes:
+      - ../../my-react-ts:/app
+    ports:
+      - 5173:5173
+    networks:
+      - react-ts
+
+networks:
+  react-ts:
